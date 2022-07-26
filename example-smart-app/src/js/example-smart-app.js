@@ -40,11 +40,11 @@
           var first_allergy = allergy[0].code.text;
           console.log(first_allergy);
           
-          var allergy_list[];
+          var allergy_list = new Array();
           for (let index = 0; index < allergy.length; ++index) {
               allergy_list[index] = allery[index].code.text;
           }
-          var allergy_string = allergy_list.join("<div>");
+          var allergy_string = allergy_list.join();
           
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
