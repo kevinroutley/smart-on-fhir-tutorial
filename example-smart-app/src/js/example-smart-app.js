@@ -60,6 +60,7 @@
           p.lname = lname;
           p.height = getQuantityValueAndUnit(height[0]);
           p.temperature = getQuantityValueAndUnit(temperature[0]);
+          p.allergies = allergy;
           
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
@@ -101,6 +102,7 @@
       ldl: {value: ''},
       hdl: {value: ''},
       temperature: {value: ''},
+      allergy: {value: ''},
     };
   }
 
@@ -145,6 +147,7 @@
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
     $('#temperature').html(p.temperature);
+    $('#allergy').html(p.allergy);
   };
 
 })(window);
