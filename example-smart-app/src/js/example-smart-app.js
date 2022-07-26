@@ -40,12 +40,12 @@
           var first_allergy = allergy[0].code.text;
           console.log(first_allergy);
           
-  //        var iterator = allergy.values();
- 
-// Here all the elements of the array is being printed.
-/*for (let elements of iterator) {
-  console.log(elements);
-}*/
+          var allergy_list[];
+          for (let index = 0; index < allergy.length; ++index) {
+              allergy_list[index] = allery[index].code.text;
+          }
+          var allergy_string = allergy_list.join("<div>");
+          
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 
@@ -70,7 +70,7 @@
           p.lname = lname;
           p.height = getQuantityValueAndUnit(height[0]);
           p.temperature = getQuantityValueAndUnit(temperature[0]);
-          p.allergies = allergy;
+          p.allergies = allergy_string;
           
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
@@ -83,10 +83,6 @@
           p.hdl = getQuantityValueAndUnit(hdl[0]);
           p.ldl = getQuantityValueAndUnit(ldl[0]);
 
-//          var p.allergy = allergyintolerance.clinicalStatus.text;
- 
-          
-          
           
           ret.resolve(p);
         });
@@ -112,7 +108,7 @@
       ldl: {value: ''},
       hdl: {value: ''},
       temperature: {value: ''},
-      allergy: {value: ''},
+      allergies: {value: ''},
     };
   }
 
@@ -157,7 +153,7 @@
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
     $('#temperature').html(p.temperature);
-    $('#allergy').html(p.allergy);
+    $('#allergy').html(p.allergies);
   };
 
 })(window);
