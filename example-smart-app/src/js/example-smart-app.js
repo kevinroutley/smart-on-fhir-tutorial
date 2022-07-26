@@ -42,7 +42,7 @@
           
           var allergy_list = new Array();
           for (let index = 0; index < allergy.length; ++index) {
-              allergy_list[index] = allery[index].code.text;
+              allergy_list[index] = allergy[index].code.text;
           }
           var allergy_string = allergy_list.join();
           
