@@ -44,7 +44,8 @@
           for (let index = 0; index < allergy.length; ++index) {
               allergy_list[index] = allergy[index].code.text;
           }
-          var allergy_string = allergy_list.join();
+          var allergy_string = allergy_list.join("</div><div>");
+          allergy_string = "<div>" + allergy_string + "</div>";
           
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
