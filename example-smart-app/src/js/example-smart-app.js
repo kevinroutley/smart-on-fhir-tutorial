@@ -18,7 +18,8 @@
                         $or: ['http://loinc.org|8302-2', // heigth
                               'http://loinc.org|85354-9', //blood pressure
                               'http://loinc.org|2085-9', // cholesterol
-                              'http://loinc.org|2089-1' ] //  Cholesterol in LDL [Mass/volume] in Serum or Plasma
+                              'http://loinc.org|2089-1', //  Cholesterol in LDL [Mass/volume] in Serum or Plasma
+                              'http://loinc.org|8310-5' ] //  temp
                       }
                     }
                   });
@@ -34,17 +35,14 @@
 
           if (typeof patient.name[0] !== 'undefined') {
             fname = patient.name[0].given.join(' ');
-/*            lname = patient.name[0].family.join(' '); */
             lname = patient.name.family;
           }
-/*          
-returned when the search is based on 85354-9(Systolic and Diastolic BP). Using the component codes 8480-6(Systolic BP) or 8462-4 (Diastolic BP) will not return the resource.
-*/
           var height = byCodes('8302-2');
           var systolicbp = getBloodPressureValue(byCodes('85354-9'),'8480-6');
           var diastolicbp = getBloodPressureValue(byCodes('85354-9'),'8462-4');
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
+          var tempature = byCodes('8310-5');
 
           var p = defaultPatient();
           p.birthdate = patient.birthDate;
@@ -52,7 +50,8 @@ returned when the search is based on 85354-9(Systolic and Diastolic BP). Using t
           p.fname = fname;
           p.lname = lname;
           p.height = getQuantityValueAndUnit(height[0]);
-
+          p.temp = getQuantityValueAndUnit(tempature[0]);
+          
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
           }
@@ -87,6 +86,7 @@ returned when the search is based on 85354-9(Systolic and Diastolic BP). Using t
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
+      tempature: {value: ''},
     };
   }
 
@@ -130,6 +130,7 @@ returned when the search is based on 85354-9(Systolic and Diastolic BP). Using t
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
+    $('#tempature').html(p.temp);
   };
 
 })(window);
