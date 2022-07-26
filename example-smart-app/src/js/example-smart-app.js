@@ -35,7 +35,15 @@
         $.when(pt, obv, aller).fail(onError);
 
         $.when(pt, obv,aller).done(function(patient, obv, allergy) {
-          console.log(allergy);
+//          console.log(allergy);
+          var iterator = allergy.values();
+ 
+// Here all the elements of the array is being printed.
+for (let elements of iterator) {
+  console.log(elements);
+}
+
+          for (
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 
